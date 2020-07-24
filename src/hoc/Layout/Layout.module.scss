@@ -1,11 +1,11 @@
-.Layout{
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
+.Layout {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 
-    main{
-        display: flex;
-        flex-direction: column; 
-        flex-grow: 1;
-    }
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 }
