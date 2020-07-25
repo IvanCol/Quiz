@@ -1,26 +1,43 @@
-import React from 'react'
-import classes from './FinishedQuiz.module.scss'
+import React from "react";
+import classes from "./FinishedQuiz.module.scss";
+import Button from "../UI/Button/Button";
 
-const FinishedQuiz = () => {
-    return (
-        <div className={classes.FinishedQuiz}>
-            <ul>
-                <li>
-                    <strong>1.</strong>
-                    <i className={''} />
-                </li>
+const FinishedQuiz = (props) => {
+  const successCount = Object.keys(props.results).reduce((total, key) => {
+    if (props.results[key] === "success") {
+      total++;
+    }
+    return total;
+  }, 0);
+  return (
+    <div className={classes.FinishedQuiz}>
+      <ul>
+        {props.quiz.map((item, index) => {
+          const cls = [
+            "fa",
+            props.results[item.id] === "error" ? "fa-times" : "fa-check",
+            props.results[item.id] === "error"
+              ? classes.error
+              : classes.success,
+          ];
+          return (
+            <li key={index}>
+              <strong>{index + 1}.</strong>&nbsp;
+              {item.question}&nbsp;
+              <i className={cls.join(" ")} />
+            </li>
+          );
+        })}
+      </ul>
+      <p>
+        Правильно {successCount}/{props.quiz.length}
+      </p>
+      <div>
+        <Button onClick={props.onRetry} type="primary">Повторить</Button>
+        <Button type="success">Перейти в список тестов</Button>
+      </div>
+    </div>
+  );
+};
 
-            </ul>
-            <p>
-                Правильной 1/2
-            </p>
-            <div>
-                <button>
-                    Повторить
-                </button>
-            </div>
-        </div>
-    )
-}
-
-export default FinishedQuiz
+export default FinishedQuiz;
