@@ -18,7 +18,7 @@ export default class Layout extends Component {
     this.setState({
       menu: !this.state.menu,
     });
-  }
+  };
   render() {
     return (
       <div className={classes.Layout}>
